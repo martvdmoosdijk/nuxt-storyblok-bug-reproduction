@@ -2,13 +2,13 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
-    [
-      '@storyblok/nuxt',
-      {
-        accessToken: "",
-        bridge: true,
-        useApiClient: false,
-      },
-    ],
+    // [
+    //   '@storyblok/nuxt',
+    //   {
+    //     accessToken: "",
+    //     bridge: true,
+    //     useApiClient: false,
+    //   },
+    // ],
   ],
 })

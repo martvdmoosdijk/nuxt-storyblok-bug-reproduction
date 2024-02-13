@@ -1,75 +1,29 @@
-# Nuxt 3 Minimal Starter
+# Nuxt Storyblok bug reproduction
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Enabling the `@storyblok/nuxt` module causes components to lose typings.
 
-## Setup
+## Steps to reproduce
 
-Make sure to install the dependencies:
+1. Install dependencies `npm install`
 
-```bash
-# npm
-npm install
+2. Run app `npm run dev`
 
-# pnpm
-pnpm install
+3. Notice that hovering over the `<MyComponent />` within [app.vue](./app.vue) shows the type of the component
 
-# yarn
-yarn install
-
-# bun
-bun install
+```ts
+(property) MyComponent: DefineComponent<__VLS_TypePropsToRuntimeProps<{
+    name: string;
+}>, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, ... 5 more ..., {}>
 ```
 
-## Development Server
+4. Enable/uncomment the @storyblok/nuxt module in the [nuxt config](./nuxt.config.ts)
 
-Start the development server on `http://localhost:3000`:
+5. Reload VSCode
 
-```bash
-# npm
-npm run dev
+6. Notice that hovering over the `<MyComponent />` within [app.vue](./app.vue) show that the component has an unknown type
 
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+```ts
+(property) MyComponent: unknown
 ```
 
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+7. Types show up again once you disable the module and reload VSCode.
